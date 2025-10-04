@@ -4,21 +4,19 @@
  */
 package modelo;
 
-import dtos.DetallesTarjetaDTO;
-import dtos.InfoCompraDTO;
 import dtos.ProductoDTO;
 import dtos.ProductoSeleccionadoDTO;
+import java.util.List;
 
 /**
  *
  * @author Alici
  */
 public interface IModeloVista {
-    public void agregarProducto(ProductoDTO producto);
 
-    public void actualizarDatosTarjeta(DetallesTarjetaDTO detallesTarjeta);
+    public List<ProductoDTO> obtenerProductos();
 
-    public void seleccionarProducto(ProductoSeleccionadoDTO productoSeleccionado);
+    public List<ProductoSeleccionadoDTO> obtenerProductosSeleccionados();
 
-    public void pagarProductos(InfoCompraDTO infoCompra);
+    public String obtenerDetalles();
 }

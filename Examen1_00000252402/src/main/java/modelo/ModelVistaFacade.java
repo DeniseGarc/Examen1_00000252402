@@ -15,11 +15,11 @@ import dtos.ProductoSeleccionadoDTO;
  *
  * @author Alici
  */
-public class ModelVistaFacade implements IModeloVista {
+public class ModelVistaFacade extends Subject implements IModeloUpdater, IModeloVista {
 
     private static ModelVistaFacade instance;
-    private List<ProductoSubject> productos;
-    private List<ProductoSeleccionadoSubject> productosSeleccionados;
+    private List<Producto> productos;
+    private List<ProductoSeleccionado> productosSeleccionados;
 
     private ModelVistaFacade() {
     }
@@ -53,6 +53,24 @@ public class ModelVistaFacade implements IModeloVista {
     public void pagarProductos(InfoCompraDTO infoCompra) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'pagarProductos'");
+    }
+
+    @Override
+    public List<ProductoDTO> obtenerProductos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ProductoSeleccionadoDTO> obtenerProductosSeleccionados() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String obtenerDetalles() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

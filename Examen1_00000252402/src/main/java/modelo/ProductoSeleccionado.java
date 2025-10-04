@@ -8,9 +8,9 @@ package modelo;
  *
  * @author Alici
  */
-public class ProductoSeleccionadoSubject extends Subject {
+public class ProductoSeleccionado extends Subject {
 
-    private ProductoSubject producto;
+    private Producto producto;
     private double subtotal;
     private int cantidad;
 }
