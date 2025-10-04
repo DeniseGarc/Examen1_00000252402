@@ -51,7 +51,7 @@ public class ModeloNegocioImp implements IModeloNegocio {
                     return;
                 }
             }
-            tarjeta.setNumeroTarjeta("BIN no encontrado.");
+            tarjeta.setNumeroTarjeta("BIN no encontrado");
             modeloUpdater.actualizarDatosTarjeta(tarjeta);
         } else {
             tarjeta.setNumeroTarjeta("Número de tarjeta inválido");

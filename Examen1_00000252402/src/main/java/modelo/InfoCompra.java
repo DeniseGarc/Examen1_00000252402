@@ -10,9 +10,23 @@ package modelo;
  */
 public class InfoCompra {
     private String texto;
+    private boolean esTarjetaValida;
 
     public InfoCompra() {
         this.texto = "";
+    }
+
+    public InfoCompra(String texto, boolean esTarjetaValida) {
+        this.texto = texto;
+        this.esTarjetaValida = esTarjetaValida;
+    }
+
+    public boolean isEsTarjetaValida() {
+        return esTarjetaValida;
+    }
+
+    public void setEsTarjetaValida(boolean esTarjetaValida) {
+        this.esTarjetaValida = esTarjetaValida;
     }
 
     public String getTexto() {
@@ -25,9 +39,11 @@ public class InfoCompra {
 
     public void actualizarDatosTarjeta(String detallesTarjeta) {
         texto = detallesTarjeta;
+        esTarjetaValida = true;
     }
 
     public void actualizarInfoCompra(String detallesCompra) {
         texto = detallesCompra;
+        esTarjetaValida = true;
     }
 }
