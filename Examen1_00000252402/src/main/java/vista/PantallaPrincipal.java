@@ -29,8 +29,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     public void actualizarVista() {
-        panelComprarProducto.revalidate();
         panelComprarProducto.repaint();
+        panelComprarProducto.revalidate();
     }
 
     /**

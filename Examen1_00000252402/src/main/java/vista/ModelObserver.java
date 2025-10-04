@@ -4,7 +4,6 @@
  */
 package vista;
 
-import modelo.Subject;
 
 /**
  *
@@ -15,7 +14,7 @@ public class ModelObserver implements IObserver {
     private PantallaPrincipal framePrincipal = PantallaPrincipal.getInstance();
 
     @Override
-    public void update(Subject subject) {
+    public void update() {
         framePrincipal.actualizarVista();
     }
 
