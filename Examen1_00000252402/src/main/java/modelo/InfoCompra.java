@@ -11,9 +11,23 @@ package modelo;
 public class InfoCompra {
     private String texto;
 
+    public InfoCompra() {
+        this.texto = "";
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
     public void actualizarDatosTarjeta(String detallesTarjeta) {
+        texto = detallesTarjeta;
     }
 
     public void actualizarInfoCompra(String detallesCompra) {
+        texto = detallesCompra;
     }
 }

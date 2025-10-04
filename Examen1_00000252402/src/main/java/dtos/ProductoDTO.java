@@ -11,12 +11,12 @@ package dtos;
 public class ProductoDTO {
 
     private String nombre;
-    private String costo;
+    private double costo;
 
     public ProductoDTO() {
     }
 
-    public ProductoDTO(String nombre, String costo) {
+    public ProductoDTO(String nombre, double costo) {
         this.nombre = nombre;
         this.costo = costo;
     }
@@ -29,11 +29,11 @@ public class ProductoDTO {
         this.nombre = nombre;
     }
 
-    public String getCosto() {
+    public double getCosto() {
         return costo;
     }
 
-    public void setCosto(String costo) {
+    public void setCosto(double costo) {
         this.costo = costo;
     }
 

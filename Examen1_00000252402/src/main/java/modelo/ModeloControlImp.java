@@ -5,6 +5,8 @@
 package modelo;
 
 import dtos.ProductoSeleccionadoDTO;
+import modeloNegocio.IModeloNegocio;
+import modeloNegocio.ModeloNegocioImp;
 
 /**
  *
@@ -13,6 +15,7 @@ import dtos.ProductoSeleccionadoDTO;
 public class ModeloControlImp implements IModeloControl {
 
     private static ModeloControlImp instance;
+    private IModeloNegocio modeloNegocio = ModeloNegocioImp.getInstance();
 
     private ModeloControlImp() {
     }
@@ -26,20 +29,17 @@ public class ModeloControlImp implements IModeloControl {
 
     @Override
     public void seleccionarProducto(ProductoSeleccionadoDTO productoSeleccionado) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'seleccionarProducto'");
+        modeloNegocio.seleccionarProducto(productoSeleccionado);
     }
 
     @Override
     public void validarTarjeta(String numeroTarjeta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validarTarjeta'");
+        modeloNegocio.obtenerInfoTarjeta(numeroTarjeta);
     }
 
     @Override
     public void pagarProductos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pagarProductos'");
+        modeloNegocio.pagarCompra();
     }
 
 }

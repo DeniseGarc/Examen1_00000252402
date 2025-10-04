@@ -25,7 +25,7 @@ public abstract class Subject {
 
     public void notifyObservers() {
         for (IObserver observer : observers) {
-            observer.update(this);
+            observer.update();
         }
     }
 }
