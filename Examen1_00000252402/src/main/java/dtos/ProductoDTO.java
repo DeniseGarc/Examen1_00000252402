@@ -1,0 +1,40 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package dtos;
+
+/**
+ *
+ * @author Alici
+ */
+public class ProductoDTO {
+
+    private String nombre;
+    private String costo;
+
+    public ProductoDTO() {
+    }
+
+    public ProductoDTO(String nombre, String costo) {
+        this.nombre = nombre;
+        this.costo = costo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCosto() {
+        return costo;
+    }
+
+    public void setCosto(String costo) {
+        this.costo = costo;
+    }
+
+}
