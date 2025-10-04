@@ -4,10 +4,14 @@
  */
 package vista;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
+
+import dtos.ProductoDTO;
+import dtos.ProductoSeleccionadoDTO;
+import modelo.IModeloVista;
+import modelo.ModelVistaFacade;
 
 /**
  *
@@ -15,16 +19,60 @@ import javax.swing.BoxLayout;
  */
 public class PanelComprarProducto extends javax.swing.JPanel {
 
-    private List<PanelProducto> panelesProducto = new ArrayList<>();
-    private List<PanelProductoSeleccionado> panelesProductoSeleccionado = new ArrayList<>();
+    private IModeloVista modeloVista = ModelVistaFacade.getInstance();
 
     /**
      * Creates new form PanelComprarProducto
      */
     public PanelComprarProducto() {
         initComponents();
+        configurarLayouts();
+        actualizarProductos();
+        actualizarProductosSeleccionados();
+    }
+
+    private void configurarLayouts() {
         contenedorProductosSeleccionados.setLayout(new BoxLayout(contenedorProductosSeleccionados, BoxLayout.Y_AXIS));
         contenedorProductos.setLayout(new BoxLayout(contenedorProductos, BoxLayout.Y_AXIS));
+    }
+
+    private void actualizarProductos() {
+        contenedorProductos.removeAll();
+        List<ProductoDTO> productos = modeloVista.obtenerProductos();
+        for (ProductoDTO producto : productos) {
+            PanelProducto panelProducto = new PanelProducto();
+            panelProducto.setNombreProducto(producto.getNombre());
+            panelProducto.setCosto("$ " + producto.getCosto());
+            contenedorProductos.add(panelProducto);
+        }
+    }
+
+    private void actualizarProductosSeleccionados() {
+        contenedorProductosSeleccionados.removeAll();
+        List<ProductoSeleccionadoDTO> productosSeleccionados = modeloVista.obtenerProductosSeleccionados();
+        for (ProductoSeleccionadoDTO producto : productosSeleccionados) {
+            PanelProductoSeleccionado panelProductoSeleccionado = new PanelProductoSeleccionado();
+            panelProductoSeleccionado.setNombre(producto.getNombre());
+            panelProductoSeleccionado.setCantidad(String.valueOf(producto.getCantidad()));
+            panelProductoSeleccionado.setSubtotal("$ " + producto.getSubtotal());
+            contenedorProductosSeleccionados.add(panelProductoSeleccionado);
+        }
+    }
+
+    private void actualizarCampoDetallesPago() {
+        String detallesPago = modeloVista.obtenerDetalles();
+        txtRecibo.setText(detallesPago);
+
+    }
+
+    @Override
+    public void repaint() {
+        actualizarProductos();
+        actualizarProductosSeleccionados();
+        actualizarCampoDetallesPago();
+        botonPagar.setEnabled(modeloVista.obtenerValidezTarjeta());
+        super.repaint();
+        revalidate();
     }
 
     /**

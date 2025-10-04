@@ -73,4 +73,10 @@ public class ModelVistaFacade extends Subject implements IModeloUpdater, IModelo
                                                                        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public boolean obtenerValidezTarjeta() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'obtenerValidezTarjeta'");
+    }
+
 }

@@ -19,4 +19,6 @@ public interface IModeloVista {
     public List<ProductoSeleccionadoDTO> obtenerProductosSeleccionados();
 
     public String obtenerDetalles();
+
+    public boolean obtenerValidezTarjeta();
 }
