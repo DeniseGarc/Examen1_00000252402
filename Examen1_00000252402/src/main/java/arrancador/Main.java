@@ -1,16 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package arrancador;
 
+import vista.PantallaPrincipal;
+
 /**
+ * Clase principal donde se va a configurar el modelo de negocio y arrancar el
+ * programa
  *
- * @author Alici
+ * @author Alicia Denise García Acosta
  */
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
+        pantallaPrincipal.setVisible(true);
     }
 }
