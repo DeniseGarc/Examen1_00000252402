@@ -16,8 +16,8 @@ import mapper.ProductoMapper;
 public class ModelVistaFacade extends Subject implements IModeloUpdater, IModeloVista {
 
     private static ModelVistaFacade instance;
-    private List<Producto> productos;
-    private List<ProductoSeleccionado> productosSeleccionados;
+    private List<Producto> productos = new ArrayList<>();
+    private List<ProductoSeleccionado> productosSeleccionados = new ArrayList<>();
     private InfoCompra detallesCompra = new InfoCompra("", false);
 
     private ModelVistaFacade() {
@@ -54,21 +54,24 @@ public class ModelVistaFacade extends Subject implements IModeloUpdater, IModelo
     }
 
     @Override
-    public void seleccionarProducto(ProductoSeleccionadoDTO productoSeleccionado) {
-        ProductoSeleccionado producto = new ProductoSeleccionado();
-        for (Producto p : productos) {
-            if (p.getNombre().equals(productoSeleccionado.getNombre())) {
-                producto = new ProductoSeleccionado(p, productoSeleccionado.getCantidad());
-                break;
+    public void actualizarProductosSeleccionados(List<ProductoSeleccionadoDTO> productosSeleccionados) {
+        List<ProductoSeleccionado> seleccionActualizada = new ArrayList<>();
+        for (ProductoSeleccionadoDTO dto : productosSeleccionados) {
+            for (Producto producto : productos) {
+                if (dto.getNombre().equals(producto.getNombre())) {
+                    ProductoSeleccionado seleccion = new ProductoSeleccionado(producto, dto.getCantidad(), dto.getSubtotal());
+                    seleccionActualizada.add(seleccion);
+                }
             }
         }
-        productosSeleccionados.add(producto);
+        this.productosSeleccionados = seleccionActualizada;
         notifyObservers();
     }
 
     @Override
     public void pagarProductos(InfoCompraDTO infoCompra) {
         if (detallesCompra.isEsTarjetaValida()) {
+            detallesCompra.setEsTarjetaValida(false);
             StringBuilder ticket = new StringBuilder();
 
             String header = String.format("==========Resumen de compra==========");
@@ -77,11 +80,11 @@ public class ModelVistaFacade extends Subject implements IModeloUpdater, IModelo
 
             ticket.append(header).append("\n");
             for (ProductoSeleccionadoDTO producto : infoCompra.getProductos()) {
-                ticket.append(String.format("\n$d $25s $.2f", producto.getCantidad(), producto.getNombre(),
+                ticket.append(String.format("%d %-25s $%.2f", producto.getCantidad(), producto.getNombre(),
                         producto.getSubtotal())).append("\n");
             }
             ticket.append(separadorTotal).append("\n");
-            ticket.append(String.format("Total.....................$.2f\n", infoCompra.getTotal()));
+            ticket.append(String.format("Total.....................$%.2f\n", infoCompra.getTotal()));
             ticket.append(separadorTarjeta).append("\n");
             ticket.append(detallesCompra.getTexto() + "\n");
             detallesCompra.setTexto(ticket.toString());
@@ -93,8 +96,10 @@ public class ModelVistaFacade extends Subject implements IModeloUpdater, IModelo
     @Override
     public List<ProductoDTO> obtenerProductos() {
         List<ProductoDTO> productoDTOs = new ArrayList<>();
-        for (Producto producto : productos) {
-            productoDTOs.add(ProductoMapper.toProductoDTO(producto));
+        if (!(productos.isEmpty())) {
+            for (Producto producto : productos) {
+                productoDTOs.add(ProductoMapper.toProductoDTO(producto));
+            }
         }
         return productoDTOs;
     }
@@ -102,8 +107,10 @@ public class ModelVistaFacade extends Subject implements IModeloUpdater, IModelo
     @Override
     public List<ProductoSeleccionadoDTO> obtenerProductosSeleccionados() {
         List<ProductoSeleccionadoDTO> productoSeleccionadoDTOs = new ArrayList<>();
-        for (ProductoSeleccionado producto : productosSeleccionados) {
-            productoSeleccionadoDTOs.add(ProductoMapper.toProductoSeleccionadoDTO(producto));
+        if (!(productosSeleccionados.isEmpty())) {
+            for (ProductoSeleccionado producto : productosSeleccionados) {
+                productoSeleccionadoDTOs.add(ProductoMapper.toProductoSeleccionadoDTO(producto));
+            }
         }
         return productoSeleccionadoDTOs;
     }
@@ -122,7 +129,7 @@ public class ModelVistaFacade extends Subject implements IModeloUpdater, IModelo
     public double obtenerTotalProductos() {
         double total = 0;
         for (ProductoSeleccionado productoSeleccionado : productosSeleccionados) {
-            total = +productoSeleccionado.getSubtotal();
+            total += productoSeleccionado.getSubtotal();
         }
         return total;
     }

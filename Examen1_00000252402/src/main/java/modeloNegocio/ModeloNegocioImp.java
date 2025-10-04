@@ -7,6 +7,7 @@ import modelo.IModeloUpdater;
 import modelo.ModelVistaFacade;
 import mapper.ProductoMapper;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,9 +19,9 @@ public class ModeloNegocioImp implements IModeloNegocio {
 
     private static ModeloNegocioImp instance;
     private IModeloUpdater modeloUpdater = ModelVistaFacade.getInstance();
-    private List<BINInfo> binInfo;
-    private Map<NegocioProducto, Integer> productosSeleccionados;
-    private List<NegocioProducto> productos;
+    private List<BINInfo> binInfo = new ArrayList<>();
+    private Map<NegocioProducto, Integer> productosSeleccionados = new HashMap<>();
+    private List<NegocioProducto> productos = new ArrayList<>();
 
     private ModeloNegocioImp() {
     }
@@ -30,6 +31,10 @@ public class ModeloNegocioImp implements IModeloNegocio {
             instance = new ModeloNegocioImp();
         }
         return instance;
+    }
+
+    public void setBinInfo(List<BINInfo> binInfo) {
+        this.binInfo = binInfo;
     }
 
     @Override
@@ -60,16 +65,36 @@ public class ModeloNegocioImp implements IModeloNegocio {
     }
 
     @Override
-    public void seleccionarProducto(ProductoSeleccionadoDTO producto) {
-        for (NegocioProducto negocioProducto : productos) {
-            if (negocioProducto.getNombre().equals(producto.getNombre())) {
-                productosSeleccionados.put(negocioProducto, producto.getCantidad());
-                producto.setSubtotal(negocioProducto.getCosto() * producto.getCantidad());
-                modeloUpdater.seleccionarProducto(producto);
+    public void seleccionarProducto(ProductoSeleccionadoDTO productoDTO) {
+
+        NegocioProducto negocioProducto = null;
+        int cantidadNueva = productoDTO.getCantidad();
+        for (NegocioProducto productoCatalogo : productos) {
+            if (productoDTO.getNombre().equals(productoCatalogo.getNombre())) {
+                negocioProducto = productoCatalogo;
                 break;
             }
         }
+        if (productosSeleccionados.containsKey(negocioProducto)) {
+            int cantidadAnterior = productosSeleccionados.get(negocioProducto);
+            int cantidadTotal = cantidadAnterior + cantidadNueva;
+            productosSeleccionados.put(negocioProducto, cantidadTotal);
+        } else {
+            productosSeleccionados.put(negocioProducto, cantidadNueva);
+        }
 
+        List<ProductoSeleccionadoDTO> seleccionaActualizada = new ArrayList<>();
+
+        for (Map.Entry<NegocioProducto, Integer> entry : productosSeleccionados.entrySet()) {
+            ProductoSeleccionadoDTO dto = new ProductoSeleccionadoDTO();
+            NegocioProducto producto = entry.getKey();
+            int cantidad = entry.getValue();
+            dto.setNombre(producto.getNombre());
+            dto.setCantidad(cantidad);
+            dto.setSubtotal(producto.getCosto() * cantidad);
+            seleccionaActualizada.add(dto);
+        }
+        modeloUpdater.actualizarProductosSeleccionados(seleccionaActualizada);
     }
 
     @Override

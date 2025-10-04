@@ -64,6 +64,10 @@ public class PanelComprarProducto extends javax.swing.JPanel {
     private void actualizarProductos() {
         contenedorProductos.removeAll();
         List<ProductoDTO> productos = modeloVista.obtenerProductos();
+
+        if (productos.isEmpty()) {
+            return;
+        }
         for (ProductoDTO producto : productos) {
             PanelProducto panelProducto = new PanelProducto();
             panelProducto.setNombreProducto(producto.getNombre());
@@ -76,6 +80,9 @@ public class PanelComprarProducto extends javax.swing.JPanel {
     private void actualizarProductosSeleccionados() {
         contenedorProductosSeleccionados.removeAll();
         List<ProductoSeleccionadoDTO> productosSeleccionados = modeloVista.obtenerProductosSeleccionados();
+        if (productosSeleccionados.isEmpty()) {
+            return;
+        }
         for (ProductoSeleccionadoDTO producto : productosSeleccionados) {
             PanelProductoSeleccionado panelProductoSeleccionado = new PanelProductoSeleccionado();
             panelProductoSeleccionado.setNombre(producto.getNombre());
@@ -84,7 +91,7 @@ public class PanelComprarProducto extends javax.swing.JPanel {
             panelProductoSeleccionado.repaint();
             contenedorProductosSeleccionados.add(panelProductoSeleccionado);
         }
-        labelTotal.setText(String.format("$.2f", modeloVista.obtenerTotalProductos()));
+        labelTotal.setText(String.format("$ %.2f", modeloVista.obtenerTotalProductos()));
         panelLateral.repaint();
         panelLateral.revalidate();
     }
@@ -96,10 +103,12 @@ public class PanelComprarProducto extends javax.swing.JPanel {
 
     @Override
     public void repaint() {
-        actualizarProductos();
-        actualizarProductosSeleccionados();
-        actualizarCampoDetallesPago();
-        botonPagar.setEnabled(modeloVista.obtenerValidezTarjeta());
+        if (!(modeloVista == null)) {
+            actualizarProductos();
+            actualizarProductosSeleccionados();
+            actualizarCampoDetallesPago();
+            botonPagar.setEnabled(modeloVista.obtenerValidezTarjeta());
+        }
         super.repaint();
         revalidate();
     }
@@ -202,7 +211,7 @@ public class PanelComprarProducto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonPagarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botonPagarActionPerformed
-
+        control.pagarProductos();
     }// GEN-LAST:event_botonPagarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

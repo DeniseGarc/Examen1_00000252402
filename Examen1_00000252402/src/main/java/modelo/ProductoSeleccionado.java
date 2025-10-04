@@ -17,7 +17,7 @@ public class ProductoSeleccionado {
     public ProductoSeleccionado() {
     }
 
-    public ProductoSeleccionado(Producto producto, int cantidad) {
+    public ProductoSeleccionado(Producto producto, int cantidad, double subtotal) {
         this.producto = producto;
         this.cantidad = cantidad;
         this.subtotal = producto.getCosto() * cantidad;

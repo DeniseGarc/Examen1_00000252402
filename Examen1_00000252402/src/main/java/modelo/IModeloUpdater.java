@@ -8,17 +8,19 @@ import dtos.DetallesTarjetaDTO;
 import dtos.InfoCompraDTO;
 import dtos.ProductoDTO;
 import dtos.ProductoSeleccionadoDTO;
+import java.util.List;
 
 /**
  *
  * @author Alici
  */
 public interface IModeloUpdater {
+
     public void agregarProducto(ProductoDTO producto);
 
     public void actualizarDatosTarjeta(DetallesTarjetaDTO detallesTarjeta);
 
-    public void seleccionarProducto(ProductoSeleccionadoDTO productoSeleccionado);
+    public void actualizarProductosSeleccionados(List<ProductoSeleccionadoDTO> productosSeleccionados);
 
     public void pagarProductos(InfoCompraDTO infoCompra);
 }
