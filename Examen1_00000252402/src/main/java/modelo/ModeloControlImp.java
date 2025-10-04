@@ -4,10 +4,42 @@
  */
 package modelo;
 
+import dtos.ProductoSeleccionadoDTO;
+
 /**
  *
  * @author Alici
  */
-public class ModeloControlImp {
-    
+public class ModeloControlImp implements IModeloControl {
+
+    private static ModeloControlImp instance;
+
+    private ModeloControlImp() {
+    }
+
+    public static ModeloControlImp getInstance() {
+        if (instance == null) {
+            instance = new ModeloControlImp();
+        }
+        return instance;
+    }
+
+    @Override
+    public void seleccionarProducto(ProductoSeleccionadoDTO productoSeleccionado) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'seleccionarProducto'");
+    }
+
+    @Override
+    public void validarTarjeta(String numeroTarjeta) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validarTarjeta'");
+    }
+
+    @Override
+    public void pagarProductos() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'pagarProductos'");
+    }
+
 }

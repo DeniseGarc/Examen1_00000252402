@@ -4,10 +4,12 @@
  */
 package vista;
 
+import modelo.Subject;
+
 /**
  *
  * @author Alici
  */
 public interface IObserver {
-
+    public void update(Subject subject);
 }

@@ -8,6 +8,8 @@ package modelo;
  *
  * @author Alici
  */
-public class InfoCompra {
-    
+public class ProductoSubject {
+    private String nombre;
+    private double costo;
+
 }

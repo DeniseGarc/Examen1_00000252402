@@ -4,10 +4,19 @@
  */
 package vista;
 
+import modelo.Subject;
+
 /**
  *
  * @author Alici
  */
-public class ModelObserver {
-    
+public class ModelObserver implements IObserver {
+
+    private PantallaPrincipal framePrincipal = PantallaPrincipal.getInstance();
+
+    @Override
+    public void update(Subject subject) {
+        framePrincipal.actualizarVista();
+    }
+
 }

@@ -11,7 +11,7 @@ import vista.PantallaPrincipal;
 public class Main {
 
     public static void main(String[] args) {
-        PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
+        PantallaPrincipal pantallaPrincipal = PantallaPrincipal.getInstance();
         pantallaPrincipal.setVisible(true);
     }
 }

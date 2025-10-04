@@ -4,10 +4,16 @@
  */
 package modelo;
 
+import dtos.ProductoSeleccionadoDTO;
+
 /**
  *
  * @author Alici
  */
 public interface IModeloControl {
-    
+    public void seleccionarProducto(ProductoSeleccionadoDTO productoSeleccionado);
+
+    public void validarTarjeta(String numeroTarjeta);
+
+    public void pagarProductos();
 }

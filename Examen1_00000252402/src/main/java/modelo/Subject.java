@@ -4,10 +4,28 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Alici
  */
+
+import java.util.List;
+
+import vista.IObserver;
+
 public abstract class Subject {
-    
+
+    private List<IObserver> observers = new ArrayList<>();
+
+    public void addObserver(IObserver observer) {
+        observers.add(observer);
+    }
+
+    public void notifyObservers() {
+        for (IObserver observer : observers) {
+            observer.update(this);
+        }
+    }
 }

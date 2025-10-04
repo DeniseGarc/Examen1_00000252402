@@ -8,6 +8,12 @@ package modelo;
  *
  * @author Alici
  */
-public class ProductoSeleccionado {
-    
+public class InfoCompraSubject {
+    private String texto;
+
+    public void actualizarDatosTarjeta(String detallesTarjeta) {
+    }
+
+    public void actualizarInfoCompra(String detallesCompra) {
+    }
 }

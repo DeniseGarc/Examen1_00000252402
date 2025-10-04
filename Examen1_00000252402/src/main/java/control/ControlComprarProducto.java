@@ -4,10 +4,22 @@
  */
 package control;
 
+import dtos.ProductoSeleccionadoDTO;
+
 /**
  *
  * @author Alici
  */
 public class ControlComprarProducto {
-    
+    public void seleccionarProducto(ProductoSeleccionadoDTO productoSeleccionado) {
+
+    }
+
+    public void pagarProductos() {
+
+    }
+
+    public void validarTarjeta(String numeroTarjeta) {
+
+    }
 }
