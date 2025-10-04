@@ -4,10 +4,19 @@
  */
 package modeloNegocio;
 
+import dtos.ProductoSeleccionadoDTO;
+
 /**
  *
  * @author Alici
  */
 public interface IModeloNegocio {
-    
+
+    public void obtenerInfoTarjeta(String numeroTarjeta);
+
+    public void seleccionarProducto(ProductoSeleccionadoDTO producto);
+
+    public void pagarCompra();
+
+    public void agregarProducto(NegocioProducto producto);
 }
