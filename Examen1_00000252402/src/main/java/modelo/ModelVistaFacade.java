@@ -118,4 +118,13 @@ public class ModelVistaFacade extends Subject implements IModeloUpdater, IModelo
         return detallesCompra.isEsTarjetaValida();
     }
 
+    @Override
+    public double obtenerTotalProductos() {
+        double total = 0;
+        for (ProductoSeleccionado productoSeleccionado : productosSeleccionados) {
+            total = +productoSeleccionado.getSubtotal();
+        }
+        return total;
+    }
+
 }

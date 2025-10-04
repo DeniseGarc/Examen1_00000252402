@@ -84,6 +84,9 @@ public class PanelComprarProducto extends javax.swing.JPanel {
             panelProductoSeleccionado.repaint();
             contenedorProductosSeleccionados.add(panelProductoSeleccionado);
         }
+        labelTotal.setText(String.format("$.2f", modeloVista.obtenerTotalProductos()));
+        panelLateral.repaint();
+        panelLateral.revalidate();
     }
 
     private void actualizarCampoDetallesPago() {

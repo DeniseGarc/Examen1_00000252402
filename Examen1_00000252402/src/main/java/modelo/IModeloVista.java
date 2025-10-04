@@ -21,4 +21,6 @@ public interface IModeloVista {
     public String obtenerDetalles();
 
     public boolean obtenerValidezTarjeta();
+
+    public double obtenerTotalProductos();
 }
