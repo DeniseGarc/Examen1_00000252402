@@ -76,28 +76,4 @@ public class InfoCompra {
         this.texto = texto;
     }
 
-    /**
-     * Actualiza el estado de la tarjeta y el texto con los detalles de la
-     * tarjeta. Establece automáticamente la tarjeta como válida.
-     *
-     * @param detallesTarjeta Cadena que contiene los detalles de la tarjeta
-     * validada.
-     */
-    public void actualizarDatosTarjeta(String detallesTarjeta) {
-        texto = detallesTarjeta;
-        esTarjetaValida = true;
-    }
-
-    /**
-     * Actualiza el texto con la información de la compra. Establece
-     * automáticamente la tarjeta como válida (asumiendo que este método se
-     * llama después de un pago exitoso).
-     *
-     * @param detallesCompra Cadena que contiene los detalles de la compra
-     * realizada.
-     */
-    public void actualizarInfoCompra(String detallesCompra) {
-        texto = detallesCompra;
-        esTarjetaValida = true;
-    }
 }
