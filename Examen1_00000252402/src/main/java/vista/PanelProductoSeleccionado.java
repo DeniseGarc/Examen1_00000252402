@@ -1,31 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package vista;
 
-import javax.swing.JLabel;
-
 /**
+ * Panel de la interfaz de usuario que representa y muestra un único producto
+ * que ha sido seleccionado y agregado al carrito de compras.
  *
- * @author Alici
+ * @author Alicia Denise García Acosta 00000252402
  */
 public class PanelProductoSeleccionado extends javax.swing.JPanel {
 
+    /**
+     * Establece el nombre del producto seleccionado en el carrito.
+     *
+     * @param nombre El nombre del producto a mostrar.
+     */
     public void setNombre(String nombre) {
         labelNombre.setText(nombre);
     }
 
+    /**
+     * Establece la cantidad de unidades de este producto seleccionado.
+     *
+     * @param cantidad La cantidad de unidades a mostrar.
+     */
     public void setCantidad(String cantidad) {
         labelCantidad.setText(cantidad);
     }
 
+    /**
+     * Establece el subtotal calculado para este producto (costo * cantidad).
+     *
+     * @param subtotal El subtotal a mostrar.
+     */
     public void setSubtotal(String subtotal) {
         labelSubtotal.setText(subtotal);
     }
 
     /**
-     * Creates new form PanelProductoSeleccionado
+     * Constructor que inicializa los componentes del panel.
      */
     public PanelProductoSeleccionado() {
         initComponents();

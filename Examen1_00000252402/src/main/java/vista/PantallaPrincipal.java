@@ -1,26 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
 
-import java.util.List;
-
 /**
+ * Clase que representa el frame principal de la aplicación. Implementa el
+ * patrón Singleton para asegurar una única instancia de la ventana principal.
  *
- * @author Alici
+ * @author Alicia Denise García Acosta 00000252402
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
+    /**
+     * Instancia única de la clase (Singleton).
+     */
     private static PantallaPrincipal instance;
 
     /**
-     * Creates new form PantallaPrincipal
+     * Constructor privado que inicializa los componentes de la ventana. Se
+     * llama solo una vez a través de getInstance().
      */
     private PantallaPrincipal() {
         initComponents();
     }
 
+    /**
+     * Método para obtener la instancia única de la clase (Singleton). Si la
+     * instancia no existe, la crea.
+     *
+     * @return La instancia única de PantallaPrincipal.
+     */
     public static PantallaPrincipal getInstance() {
         if (instance == null) {
             instance = new PantallaPrincipal();
@@ -28,6 +34,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         return instance;
     }
 
+    /**
+     * Actualiza la vista del panel principal de compra. Este método es llamado
+     * por el observador del modelo para refrescar la interfaz cuando los datos
+     * cambian.
+     */
     public void actualizarVista() {
         panelComprarProducto.repaint();
         panelComprarProducto.revalidate();

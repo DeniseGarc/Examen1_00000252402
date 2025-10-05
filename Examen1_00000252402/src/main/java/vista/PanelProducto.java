@@ -1,35 +1,49 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package vista;
 
 import control.ControlComprarProducto;
-import javax.swing.JLabel;
-import javax.swing.JSpinner;
 
 /**
+ * Panel de la interfaz de usuario que muestra un producto individual del
+ * catálogo y permite al usuario seleccionar la cantidad deseada.
  *
- * @author Alici
+ * @author Alicia Denise García Acosta 00000252402
  */
 public class PanelProducto extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelProducto
+     * Constructor que inicializa los componentes del panel y configura las
+     * opciones del selector de cantidad.
      */
     public PanelProducto() {
         initComponents();
         configurarSpinner();
     }
 
+    /**
+     * Configura el modelo del selector de cantidad (JSpinner) para permitir
+     * seleccionar valores desde 1 hasta 100.
+     */
     private void configurarSpinner() {
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
     }
 
+    /**
+     * Establece y muestra el nombre del producto en la etiqueta correspondiente
+     * del panel.
+     *
+     * @param nombre El nombre del producto a mostrar.
+     */
     public void setNombreProducto(String nombre) {
         labelNombreProducto.setText(nombre);
     }
 
+    /**
+     * Establece y muestra el costo unitario del producto en la etiqueta
+     * correspondiente.
+     *
+     * @param costo El costo del producto a mostrar (generalmente como String
+     * formateado).
+     */
     public void setCosto(String costo) {
         labelCosto.setText(costo);
     }

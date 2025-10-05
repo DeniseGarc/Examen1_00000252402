@@ -1,47 +1,101 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 /**
+ * Clase de modelo que encapsula la información de una compra, incluyendo
+ * mensajes de estado y el resultado de la validación de la tarjeta.
  *
- * @author Alici
+ * @author Alicia Denise García Acosta 00000252402
+ *
  */
 public class InfoCompra {
+
+    /**
+     * Campo de texto genérico usado para almacenar mensajes o detalles (e.g.,
+     * detalles de la tarjeta o de la compra).
+     */
     private String texto;
+
+    /**
+     * Indicador booleano que señala si la tarjeta de crédito o débito ha sido
+     * validada exitosamente.
+     */
     private boolean esTarjetaValida;
 
+    /**
+     * Constructor por defecto. Inicializa el campo de texto a una cadena vacía.
+     */
     public InfoCompra() {
         this.texto = "";
     }
 
+    /**
+     * Constructor que inicializa todos los atributos de la información de
+     * compra.
+     *
+     * @param texto El mensaje o detalle a almacenar.
+     * @param esTarjetaValida Estado de validación de la tarjeta.
+     */
     public InfoCompra(String texto, boolean esTarjetaValida) {
         this.texto = texto;
         this.esTarjetaValida = esTarjetaValida;
     }
 
+    /**
+     * Obtiene el estado de validación de la tarjeta.
+     *
+     * @return true si la tarjeta es válida, false en caso contrario.
+     */
     public boolean isEsTarjetaValida() {
         return esTarjetaValida;
     }
 
+    /**
+     * Establece el estado de validación de la tarjeta.
+     *
+     * @param esTarjetaValida El nuevo estado de validación.
+     */
     public void setEsTarjetaValida(boolean esTarjetaValida) {
         this.esTarjetaValida = esTarjetaValida;
     }
 
+    /**
+     * Obtiene el mensaje o texto descriptivo almacenado.
+     *
+     * @return El texto actual.
+     */
     public String getTexto() {
         return texto;
     }
 
+    /**
+     * Establece o actualiza el mensaje o texto descriptivo.
+     *
+     * @param texto El nuevo texto a establecer.
+     */
     public void setTexto(String texto) {
         this.texto = texto;
     }
 
+    /**
+     * Actualiza el estado de la tarjeta y el texto con los detalles de la
+     * tarjeta. Establece automáticamente la tarjeta como válida.
+     *
+     * @param detallesTarjeta Cadena que contiene los detalles de la tarjeta
+     * validada.
+     */
     public void actualizarDatosTarjeta(String detallesTarjeta) {
         texto = detallesTarjeta;
         esTarjetaValida = true;
     }
 
+    /**
+     * Actualiza el texto con la información de la compra. Establece
+     * automáticamente la tarjeta como válida (asumiendo que este método se
+     * llama después de un pago exitoso).
+     *
+     * @param detallesCompra Cadena que contiene los detalles de la compra
+     * realizada.
+     */
     public void actualizarInfoCompra(String detallesCompra) {
         texto = detallesCompra;
         esTarjetaValida = true;

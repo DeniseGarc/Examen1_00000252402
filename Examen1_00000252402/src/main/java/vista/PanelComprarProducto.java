@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package vista;
 
 import java.util.List;
-
 import javax.swing.BoxLayout;
-
 import control.ControlComprarProducto;
 import dtos.ProductoDTO;
 import dtos.ProductoSeleccionadoDTO;
@@ -15,16 +9,28 @@ import modelo.IModeloVista;
 import modelo.ModelVistaFacade;
 
 /**
+ * Panel de la interfaz de usuario que gestiona la compra de productos. Actúa
+ * como la vista principal, mostrando el catálogo, el carrito y la información
+ * de pago.
  *
- * @author Alici
+ * @author Alicia Denise García Acosta 00000252402
  */
 public class PanelComprarProducto extends javax.swing.JPanel {
 
+    /**
+     * Referencia a la interfaz de consulta del modelo para obtener datos.
+     */
     private IModeloVista modeloVista = ModelVistaFacade.getInstance();
+
+    /**
+     * Referencia a la clase controladora para enviar comandos de usuario.
+     */
     private ControlComprarProducto control = ControlComprarProducto.getInstance();
 
     /**
-     * Creates new form PanelComprarProducto
+     * Creates new form PanelComprarProducto. Inicializa los componentes,
+     * configura los layouts, carga los productos y establece los escuchadores
+     * para la validación de la tarjeta.
      */
     public PanelComprarProducto() {
         initComponents();
@@ -34,6 +40,11 @@ public class PanelComprarProducto extends javax.swing.JPanel {
         configurarListenersCampoTarjeta();
     }
 
+    /**
+     * Configura el listener para el campo de texto del número de tarjeta de
+     * crédito. Cada vez que el texto cambia, se llama al control para validar
+     * la tarjeta y actualizar la visibilidad del botón de pagar.
+     */
     private void configurarListenersCampoTarjeta() {
         txtNumTarjeta.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
@@ -56,11 +67,20 @@ public class PanelComprarProducto extends javax.swing.JPanel {
         });
     }
 
+    /**
+     * Configura el layout de los contenedores para productos del catálogo y
+     * productos seleccionados utilizando BoxLayout en el eje Y para una
+     * disposición vertical.
+     */
     private void configurarLayouts() {
         contenedorProductosSeleccionados.setLayout(new BoxLayout(contenedorProductosSeleccionados, BoxLayout.Y_AXIS));
         contenedorProductos.setLayout(new BoxLayout(contenedorProductos, BoxLayout.Y_AXIS));
     }
 
+    /**
+     * Limpia el contenedor del catálogo y lo repuebla con paneles de producto
+     * obtenidos del modelo.
+     */
     private void actualizarProductos() {
         contenedorProductos.removeAll();
         List<ProductoDTO> productos = modeloVista.obtenerProductos();
@@ -77,6 +97,10 @@ public class PanelComprarProducto extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Limpia el contenedor del carrito y lo repuebla con los productos
+     * seleccionados obtenidos del modelo, y actualiza el total.
+     */
     private void actualizarProductosSeleccionados() {
         contenedorProductosSeleccionados.removeAll();
         List<ProductoSeleccionadoDTO> productosSeleccionados = modeloVista.obtenerProductosSeleccionados();
@@ -96,11 +120,19 @@ public class PanelComprarProducto extends javax.swing.JPanel {
         panelLateral.revalidate();
     }
 
+    /**
+     * Obtiene los detalles de la compra o de la tarjeta del modelo y actualiza
+     * el campo de texto del recibo.
+     */
     private void actualizarCampoDetallesPago() {
         String detallesPago = modeloVista.obtenerDetalles();
         txtRecibo.setText(detallesPago);
     }
 
+    /**
+     * Sobrescribe el método repaint para asegurar que la vista se actualice
+     * completamente cada vez que el modelo notifica un cambio.
+     */
     @Override
     public void repaint() {
         if (!(modeloVista == null)) {
